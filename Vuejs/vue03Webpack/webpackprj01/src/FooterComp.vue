@@ -1,9 +1,7 @@
 <style scoped></style>
 
 <template>
-  <footer data-role="footer">
-    <h1>Footer.html</h1>
-  </footer>
+  <div>HeaderComp</div>
 </template>
 
 <script>
