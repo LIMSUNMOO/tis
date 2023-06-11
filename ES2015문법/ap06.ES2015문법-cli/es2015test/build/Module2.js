@@ -1,3 +1,7 @@
+"use strict";
+
+var _Module = _interopRequireDefault(require("./Module1.js"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 /*
   CommonJS 모듈 방식 : require 사용
     var module = require('./MyModule');
@@ -12,3 +16,6 @@
 */
 
 // Module2.js
+
+console.log(_Module["default"]); //2
+debugger;

@@ -1,7 +1,9 @@
 <style scoped></style>
 
 <template>
-  <div>HeaderComp</div>
+  <Footer data-role="Footer">
+    <div>FooterComp</div>
+  </Footer>
 </template>
 
 <script>
