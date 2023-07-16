@@ -93,9 +93,11 @@
 
 
     1-02. crud 컴포넌트 트리 만들기
-        CrudContainer
-            |-- CrudInput
-            `-- CrudList
+        ./crud/
+            |-- CrudContainer.js
+            |-- CrudInput.js
+            |-- CrudList.js
+            `-- CrudListItem.js
 
         실행 화면 확인
 
@@ -142,32 +144,7 @@
                     <button type="button">Add</button>
                 </div>
             );
-        }
-
-    1-07. CrudInput 컴포넌트 수정
-
-        function CrudInput({}) {
-            // JSX로 화면 만들기
-            return (
-                <div>
-                    <div>
-                        <label htmlFor="">Name : </label>
-                        <input type="text"
-                                name="name"
-                                placeholder="이름을 입력하세요"
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="">Power : </label>
-                        <input type="number"
-                                name="power"
-                                placeholder="숫자를 입력하세요"
-                        />
-                    </div>
-                    <button type="button">Add</button>
-                </div>
-            );
-        }
+        }}
 
     1-08. CrudContainer 에 CrudInput 컴포넌트 추가하기
         function CrudContainer({}) {
@@ -196,7 +173,7 @@
 
             // JSX로 화면 만들기
             return (
-                <table>
+                <StyledCrudList>
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -218,7 +195,7 @@
                             </td>
                         </tr>
                     </tbody>
-                </table>
+                </StyledCrudList>
             )
         }
 
@@ -321,9 +298,7 @@
         2-4. CrudListItem 에 props 기능 추가하기
             power가 300이상인 사람은 글자색을 red, bold 로 출력되게 css를 적용하시오.
 
-            function CrudListItem({
-                item,
-            }) {
+            function CrudListItem({ item }) {
 
                 // JSX로 화면 만들기
                 let strong = "";
@@ -391,15 +366,17 @@
                     {id:3, name: "스파이더맨", power: 500},
                     {id:4, name: "배트맨", power: 30},
                 ]);
+
                 ...중략
+
                 return (
-                    <div id="app">
+                    <StyledCrudContainer id="app">
                         <h1>Creat Read Update Delete</h1>
                         <CrudInput></CrudInput>
                         <hr/>
                         <CrudList items={items}>
                         </CrudList>
-                    </div>
+                    </StyledCrudContainer>
                 )
             }
 
@@ -407,14 +384,14 @@
 
         "rt12-17.JSX.반복문.html"를 참고하여 JSX 반복문 코드를 추가 하시오.
 
-        function CrudList({
-            items,
-        }) {
-            const arrs = items.map( (item)=>{
+        function CrudList({ items }) {
+            ...중략
+
+            const arrs = items && items.length && items.map( (item)=>{
                 return (
                     <CrudListItem
-                        item={item}
                         key={item.id}
+                        item={item}
                     >
                     </CrudListItem>
                 )
@@ -441,7 +418,7 @@
 
     ##################################
     작업 3 CrudContainer 컴포넌트 수정하기
-          callback 메서드 작성하기 
+          callback 메서드 작성하기
           소요시간: 40분
     ##############################
 
@@ -612,6 +589,7 @@
             ...중략
             // 이벤트 핸들러 작성.
             const handlerAdd = (event)=>{
+
                 // 부모 콜백 메서드 호출
                 // CrudContainer.callbackAdd();
                 callbackAdd();
@@ -626,8 +604,8 @@
         3-7. CrudContainer 의 콜백 메서드 완성하기
         function CrudContainer(props) {
 
-            ... 중간 생략 
-            
+            ... 중간 생략
+
             // items 배열에서 삭제하는 콜백 메서드 만들기. Array.filter() 를 사용한다
             const callbackDel = useCallback( (item) => {
                 // ...생략
@@ -713,9 +691,9 @@
             Power의 입력값이 숫자인지 유효성 검사.
                 포커스 주기
                 이벤트 취소
-                
+
             Power의 입력값을 숫자로 바꾸시오.(문자열를 숫자로)
-            newitem 객체 만들기 
+            newitem 객체 만들기
             부모 메서드 CrudContainer.callbackAdd() 호출
             input 태그에 남아있는 입력값 지우기.
 
